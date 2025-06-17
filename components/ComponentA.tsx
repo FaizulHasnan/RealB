@@ -7,7 +7,7 @@ const ComponentA = ({ item }) => {
         padding: 1,
         marginBottom: 5,
         borderRadius: 1,
-        backgroundColor: "#white",
+        backgroundColor: "white",
         flexDirection: "column",
       }}
     >
