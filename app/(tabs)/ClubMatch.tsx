@@ -14,7 +14,7 @@ export default function ClubMatch() {
           textAlign: "center",
         }}
       >
-        Game Fixtures
+        Game Fixture
       </Text>
       <FlatList
         data={Fixtures}
@@ -46,7 +46,6 @@ export default function ClubMatch() {
                     height: 20,
                     width: 200,
                     backgroundColor: "#bdb76b",
-                    alignContent: "center",
                   }}
                 >
                   <Text style={{ fontSize: 15 }}>{item.venue}</Text>
