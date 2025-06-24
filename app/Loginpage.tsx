@@ -36,7 +36,7 @@ export default function LoginPage() {
         colors={["#800000", "#c31432", "#240b36"]}
         start={{ x: 0, y: 1.5 }}
         end={{ x: 0.2, y: -0.5 }}
-        style={{ flex: 1 }}
+        style={{}}
       >
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
