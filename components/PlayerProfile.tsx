@@ -1,57 +1,69 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import TextAtrribute from "./TextAttribute";
 import TextRecord from "./TextRecord";
 
 const PlayerProfile = ({ player }) => {
   return (
-    <View
+    <ScrollView
       style={{
         backgroundColor: "#f5f5f5",
         borderRadius: 10,
       }}
+      stickyHeaderIndices={[0]}
     >
       <View style={styles.headerContainer}>
-        <View style={styles.headerText}>
-          <Text
-            style={{
-              fontSize: 17,
-              fontWeight: "bold",
-              color: "#ffffff",
-              textAlign: "right",
-            }}
-          >
-            {player?.fullname}
-          </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              color: "#ffffff",
-              textAlign: "right",
-            }}
-          >
-            {player?.position}
-          </Text>
-          {/* <View style={{ justifyContent: "space-between" }}> */}
-          <Text
-            style={{
-              fontSize: 50,
-              color: "#ffffff",
-              position: "absolute",
-              textAlign: "left",
-              right: 10,
-              top: 30,
-            }}
-          >
-            {player?.jersey}
-            {/* <Image style={{width: 100,height: 100,}} source={require("@/assets/images/RealB.jpg")}/> */}
-          </Text>
-          {/* </View> */}
-        </View>
-        <Image style={styles.image} source={player?.img} />
+        <LinearGradient
+          colors={["#000000", "#80000F", "#daa520"]}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 1, y: 0 }}
+        >
+          <View style={styles.headerText}>
+            <Text
+              style={{
+                fontSize: 17,
+                fontWeight: "bold",
+                color: "#ffffff",
+                textAlign: "right",
+              }}
+            >
+              {player?.fullname}
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: "#ffffff",
+                textAlign: "right",
+              }}
+            >
+              {player?.position}
+            </Text>
+            {/* <View style={{ justifyContent: "space-between" }}> */}
+            <Text
+              style={{
+                fontSize: 50,
+                color: "#ffffff",
+                position: "absolute",
+                textAlign: "left",
+                right: 10,
+                top: 30,
+              }}
+            >
+              {player?.jersey}
+              {/* <Image style={{width: 100,height: 100,}} source={require("@/assets/images/RealB.jpg")}/> */}
+            </Text>
+            {/* </View> */}
+          </View>
+          <Image style={styles.image} source={player?.img} />
+        </LinearGradient>
       </View>
 
       <View
-        style={{ borderWidth: 1, borderColor: "#808080", marginHorizontal: 3 }}
+        style={{
+          borderWidth: 1,
+          borderColor: "#808080",
+          marginHorizontal: 3,
+        }}
       >
         <Text style={styles.header}>Personal Details</Text>
 
@@ -79,7 +91,7 @@ const PlayerProfile = ({ player }) => {
           <TextRecord keyRecord={"Losses"} value={player?.losses} />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -89,7 +101,6 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 250,
-    alignSelf: "flex-end",
   },
 
   text: {
@@ -98,13 +109,14 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     backgroundColor: "#800000",
-    flexDirection: "row-reverse",
-    justifyContent: "space-around",
+    // flexDirection: "row",
+    // justifyContent: "space-around",
     marginBottom: 10,
   },
   headerText: {
     marginTop: 10,
     paddingHorizontal: 10,
+    // backgroundColor: "black",
   },
   header: {
     fontWeight: "bold",
