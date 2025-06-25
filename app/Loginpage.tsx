@@ -15,9 +15,9 @@ import {
 
 export default function LoginPage() {
   const [login, setLogin] = useState(true);
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleAuth = () => {
     if (login) {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 160,
+    // paddingHorizontal: 160,a
     // backgroundColor: "#fafafa",
     textAlign: "center",
     color: "white",

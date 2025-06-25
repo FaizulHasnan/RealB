@@ -11,7 +11,7 @@ const Pastmatch = ({ item }) => {
       }}
     >
       <LinearGradient
-        colors={["#23074d", "#cc5333"]}
+        colors={["#000000", "#23074d", "#cc5333"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={{ borderRadius: 7 }}
@@ -22,8 +22,6 @@ const Pastmatch = ({ item }) => {
           <View style={{ flex: 1 }}>
             <Text style={styles.textTime}>
               {item.date}
-              {"   "}
-              {item.day}
               {" - "}
               {item.time}
             </Text>
@@ -49,6 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "bold",
     color: "white",
+    marginRight: 5,
   },
 });
 

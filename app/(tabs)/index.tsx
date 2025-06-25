@@ -15,7 +15,10 @@ export default function HomeScreen() {
 
   const getData = async () => {
     try {
-      const { data, error, status } = await supabase.from("users").select("*");
+      const { data, error, status } = await supabase
+        .from("users")
+        .select("*")
+        .order("callname", { ascending: true });
 
       if (error && status !== 406) {
         throw error;

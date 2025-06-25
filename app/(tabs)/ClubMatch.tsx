@@ -61,7 +61,7 @@ export default function ClubMatch() {
     return <MatchDay item={item} />;
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
       <Text
         style={{
           fontSize: 30,
@@ -69,6 +69,7 @@ export default function ClubMatch() {
           marginBottom: 10,
           marginTop: 50,
           textAlign: "center",
+          color: "white",
         }}
       >
         Game Fixtures
@@ -87,6 +88,7 @@ export default function ClubMatch() {
           marginTop: 15,
           fontWeight: "bold",
           textAlign: "center",
+          color: "white",
         }}
       >
         Past Match
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
   textMain: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "black",
+    color: "white",
     flex: 1,
     display: "flex",
   },
