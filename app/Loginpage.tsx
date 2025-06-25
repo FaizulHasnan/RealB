@@ -51,10 +51,9 @@ export default function LoginPage() {
             height: 300,
             width: 250,
             margin: "auto",
-            marginTop: "150",
+            marginTop: 150,
           }}
-          // source={require("@/assets/images/RealB.png")}
-          source={require("/Users/rizalzul/Projects/Faizul/assets/images/RealB.png")}
+          source={require("@/assets/images/RealB.png")}
         ></Image>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
