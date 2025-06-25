@@ -51,7 +51,7 @@ export default function LoginPage() {
             height: 300,
             width: 250,
             margin: "auto",
-            marginTop: 150,
+            // marginTop: 150,
           }}
           source={require("@/assets/images/RealB.png")}
         ></Image>
