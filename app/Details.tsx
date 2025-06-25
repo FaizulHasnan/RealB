@@ -1,17 +1,43 @@
 import PlayerProfile from "@/components/PlayerProfile";
-import { Players } from "@/constants/Players";
+import { supabase } from "@/lib/supabase";
 import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Details() {
+export default async function Details() {
   const { itemId } = useLocalSearchParams();
 
-  const Player = Players.find((i) => i.id === itemId);
-  // console.log("Player", Player, item);
+  const [player, setPlayer] = useState({});
+
+  useEffect(() => {
+    // Fetch data from Supabase when the component mounts
+    getData();
+  }, [itemId]);
+
+  const getData = async () => {
+    try {
+      const { data, error, status } = await supabase
+        .from("users")
+        .select("*")
+        .eq("id", itemId)
+        .single();
+
+      if (error && status !== 406) {
+        throw error;
+      }
+      if (data) {
+        setPlayer(data);
+        console.log("Data", data);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{Player?.callname}</Text>
-      <PlayerProfile player={Player} />
+      <Text style={styles.title}>{player?.callname}</Text>
+      <PlayerProfile player={player} />
     </View>
   );
 }

@@ -1,13 +1,38 @@
 import MatchDay from "@/components/MatchDay";
 import Nextmatch from "@/components/Nextmatch";
 import Pastmatch from "@/components/Pastmatch";
-import { Fixtures } from "@/constants/Fixtures";
+import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ClubMatch() {
+  const [fixtures, setFixtures] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from Supabase when the component mounts
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const { data, error, status } = await supabase
+        .from("fixtures")
+        .select("*");
+      if (error && status !== 406) {
+        throw error;
+      }
+      if (data) {
+        setFixtures(data);
+        console.log("Data fetched successfully:", data);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const parseDateString = (dateString) => {
-    const [day, month, year] = dateString.split("/").map(Number);
+    const [year, month, day] = dateString.split("-").map(Number);
 
     return new Date(year, month - 1, day + 1);
   };
@@ -21,10 +46,10 @@ export default function ClubMatch() {
     return today > parseDate;
   };
 
-  const pastMatchData = Fixtures.filter((i) => checkPastDate(i.date)).sort(
-    (a, b) => parseDateString(b.date) - parseDateString(a.date)
-  );
-  const nextMatchData = Fixtures.filter((i) => !checkPastDate(i.date));
+  const pastMatchData = fixtures
+    .filter((i) => checkPastDate(i.date))
+    .sort((a, b) => parseDateString(b.date) - parseDateString(a.date));
+  const nextMatchData = fixtures.filter((i) => !checkPastDate(i.date));
 
   const renderPastMatch = ({ item, index }) => {
     return <Pastmatch item={item} />;

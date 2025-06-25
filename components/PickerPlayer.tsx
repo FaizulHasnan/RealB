@@ -12,9 +12,9 @@ const PickerPlayer = ({ position, playerRequired }) => {
     let newArr = [...pickerArray];
     newArr[index] = val;
     setPickerArray(newArr);
-    console.log("newArr", newArr); // ["6", undefined]
-    console.log("index", index); // 0
-    console.log("val", val); // 6
+    // console.log("newArr", newArr); // ["6", undefined]
+    // console.log("index", index); // 0
+    // console.log("val", val); // 6
   };
 
   //   const positionName = (pos) => {
@@ -56,7 +56,7 @@ const PickerPlayer = ({ position, playerRequired }) => {
       </Text>
 
       {pickerArray.map((i, index) => {
-        console.log("Dekat Picker", pickerArray[index]);
+        // console.log("Dekat Picker", pickerArray[index]);
         return (
           <Picker
             style={style.pickerStyles}

@@ -2,6 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import {
   Alert,
+  Image,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -20,8 +21,8 @@ export default function LoginPage() {
 
   const handleAuth = () => {
     if (login) {
-      Alert.alert("Logging In", `${email},${password}`, [
-        { text: "confirm", style: "destructive" },
+      Alert.alert("Logging In", `${email}`, [
+        { text: "confirm", style: "cancel" },
       ]);
     } else {
       Alert.alert("Signing Up", `${name},${email},${password}`, [
@@ -33,22 +34,40 @@ export default function LoginPage() {
   return (
     <SafeAreaView>
       <LinearGradient
-        colors={["#800000", "#c31432", "#240b36"]}
-        start={{ x: 0, y: 1.5 }}
-        end={{ x: 0.2, y: -0.5 }}
-        style={{}}
+        colors={[
+          "#000000",
+          "#800000",
+          "#000000",
+          "#daa520",
+          "#000000",
+          "#800000",
+          "#000000",
+        ]}
+        start={{ x: 2, y: 2 }}
+        end={{ x: 0.5, y: -3 }}
       >
+        <Image
+          style={{
+            height: 300,
+            width: 250,
+            margin: "auto",
+            marginTop: "150",
+          }}
+          // source={require("@/assets/images/RealB.png")}
+          source={require("/Users/rizalzul/Projects/Faizul/assets/images/RealB.png")}
+        ></Image>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
         >
           <View style={styles.container}>
             <Text style={styles.loginSignup}>
-              {login ? "LOGIN" : "BE REAL NOW !!"}
+              {login ? "WELCOME COMRADES" : "BE REAL NOW !!"}
             </Text>
-            {login && (
+            {!login && (
               <TextInput
                 style={styles.inputText}
                 placeholder="Name"
+                placeholderTextColor="#f8f8ff"
                 value={name}
                 onChangeText={setName}
               />
@@ -56,6 +75,7 @@ export default function LoginPage() {
             <TextInput
               style={styles.inputText}
               placeholder="Email"
+              placeholderTextColor="#f8f8ff"
               keyboardType="email-address"
               autoCapitalize="none"
               value={email}
@@ -64,6 +84,7 @@ export default function LoginPage() {
             <TextInput
               style={styles.inputText}
               placeholder="Password"
+              placeholderTextColor="#f8f8ff"
               secureTextEntry
               value={password}
               onChangeText={setPassword}
@@ -95,29 +116,34 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     shadowColor: "#000",
     shadowOpacity: 0.1,
-    marginTop: 250,
+    // marginTop: 250,
   },
   loginSignup: {
     fontWeight: "bold",
-    fontSize: 28,
-    backgroundColor: "white",
-    textShadowColor: "white",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 20,
+    fontSize: 25,
+    color: "white",
+    // textShadowColor: "gold",
+    // textShadowOffset: { width: 1, height: 1 },
+    // textShadowRadius: 20,
     textAlign: "center",
+    marginBottom: 20,
   },
   switchText: {
     textAlign: "center",
-    color: "black",
+    color: "white",
     marginTop: 12,
   },
   inputText: {
+    fontSize: 12,
+    fontWeight: "bold",
     height: 48,
-    // borderColor: "#ccc",
+    borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 160,
-    backgroundColor: "#fafafa",
+    // backgroundColor: "#fafafa",
+    textAlign: "center",
+    color: "white",
   },
   backgroundImage: {
     flex: 1,

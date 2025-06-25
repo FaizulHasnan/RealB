@@ -1,31 +1,33 @@
 import PlayerList from "@/components/PlayerList";
-import { Players } from "@/constants/Players";
+import { supabase } from "@/lib/supabase";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
-  
-  // useEffect(() => {
-  //   // Fetch data from Supabase when the component mounts
-  //   getData();
-  // }, []);
+  const [players, setPlayers] = useState([]);
 
-  // const getData = async () => {
-  //   try{
-  //     const { data, error, status} = await supabase.from('users').select('*');
-  //     if(error && status !== 406) {
-  //       throw error;
-  //     }
-  //     if(data) {
-  //       console.log('Data fetched successfully:', data);
-  //     }
-  //   }catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // }
+  useEffect(() => {
+    // Fetch data from Supabase when the component mounts
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const { data, error, status } = await supabase.from("users").select("*");
+
+      if (error && status !== 406) {
+        throw error;
+      }
+      if (data) {
+        setPlayers(data);
+        console.log("Data fetched successfully:", data);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -41,7 +43,7 @@ export default function HomeScreen() {
         Real B Players
       </Text>
       <PlayerList
-        players={Players}
+        players={players}
         onPressItem={(itemId: string) =>
           router.push({
             pathname: "/Details",
