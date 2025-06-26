@@ -4,19 +4,20 @@ import TextAtrribute from "./TextAttribute";
 import TextRecord from "./TextRecord";
 
 const PlayerProfile = ({ player }) => {
+  console.log("player", player);
   return (
     <ScrollView
       style={{
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "black",
         borderRadius: 10,
       }}
       stickyHeaderIndices={[0]}
     >
       <View style={styles.headerContainer}>
         <LinearGradient
-          colors={["#000000", "#80000F", "#daa520"]}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 1, y: 0 }}
+          colors={["#59C173", "#000000", "#ffff00"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 2 }}
         >
           <View style={styles.headerText}>
             <Text
@@ -54,7 +55,7 @@ const PlayerProfile = ({ player }) => {
             </Text>
             {/* </View> */}
           </View>
-          <Image style={styles.image} source={player?.img} />
+          <Image style={styles.image} source={{ uri: player.imageUrl }} />
         </LinearGradient>
       </View>
 
@@ -99,7 +100,7 @@ export default PlayerProfile;
 
 const styles = StyleSheet.create({
   image: {
-    width: 150,
+    width: 170,
     height: 250,
   },
 
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 25,
     padding: 10,
-    color: "#000000",
+    color: "white",
   },
   boxText: {
     color: "#fff8dc",

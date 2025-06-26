@@ -54,7 +54,9 @@ export default function LoginPage() {
             marginTop: "150",
           }}
           // source={require("@/assets/images/RealB.png")}
-          source={require("/Users/rizalzul/Projects/Faizul/assets/images/RealB.png")}
+          source={{
+            uri: "https://triwxbibkxtrvyftqzrh.supabase.co/storage/v1/object/public/realbucket//RealB.png",
+          }}
         ></Image>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}

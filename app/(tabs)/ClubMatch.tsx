@@ -88,7 +88,7 @@ export default function ClubMatch() {
           marginTop: 15,
           fontWeight: "bold",
           textAlign: "center",
-          color: "white",
+          color: "red",
         }}
       >
         Past Match

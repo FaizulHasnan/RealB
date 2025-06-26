@@ -4,7 +4,7 @@ const TextAtrribute = ({ keyAtrribute, value }) => {
   return (
     <View style={styles.subText}>
       <Text style={styles.text}>{keyAtrribute}: </Text>
-      <Text style={{ fontWeight: "bold" }}>{value}</Text>
+      <Text style={{ fontWeight: "bold", color: "white" }}>{value}</Text>
     </View>
   );
 };
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   text: {
-    color: "#000000",
+    color: "white",
     fontSize: 18,
   },
 });

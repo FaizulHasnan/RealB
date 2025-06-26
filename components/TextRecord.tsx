@@ -6,9 +6,9 @@ const TextRecord = ({ keyRecord, value }) => {
     <View>
       <View style={styles.box}>
         <LinearGradient
-          colors={["#800000", "#c31432", "#240b36"]}
-          start={{ x: 0, y: 3 }}
-          end={{ x: 1, y: 0.1 }}
+          colors={["#59C173", "#000000", "#5D26C1"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 2 }}
         >
           <Text style={{ paddingLeft: 5, fontSize: 20, color: "#f8f8ff" }}>
             {keyRecord}

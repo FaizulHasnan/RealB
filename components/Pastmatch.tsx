@@ -16,18 +16,15 @@ const Pastmatch = ({ item }) => {
         end={{ x: 1, y: 0 }}
         style={{ borderRadius: 7 }}
       >
-        <Text style={styles.textMain}>{item.team}</Text>
-
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.textTime}>
-              {item.date}
-              {" - "}
-              {item.time}
-            </Text>
-          </View>
+        <View style={{}}>
+          <Text style={styles.textTime}>{item.status}</Text>
           <View>
-            <Text style={styles.textTime}>{item.venue}</Text>
+            <View>
+              <Text style={styles.textTime}>{item.date}</Text>
+            </View>
+            <View>
+              <Text style={styles.textMain}>{item.team}</Text>
+            </View>
           </View>
         </View>
       </LinearGradient>
@@ -38,16 +35,15 @@ const styles = StyleSheet.create({
   textMain: {
     fontSize: 20,
     fontWeight: "bold",
-    flex: 1,
     display: "flex",
-    textAlign: "center",
+    textAlign: "right",
     color: "white",
   },
   textTime: {
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "bold",
     color: "white",
-    marginRight: 5,
+    textAlign: "left",
   },
 });
 
