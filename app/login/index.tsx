@@ -1,4 +1,6 @@
+import { useAuthSession } from "@/app/providers/AuthProvider";
 import { LinearGradient } from "expo-linear-gradient";
+import Uuid from "expo-modules-core/src/uuid";
 import { useState } from "react";
 import {
   Alert,
@@ -18,6 +20,13 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {signIn} = useAuthSession();
+
+  const handleLogin = ():void => {
+    const random: string = Uuid.v4();
+    //get usersname, password
+    signIn(random);
+  }
 
   const handleAuth = () => {
     if (login) {
@@ -88,12 +97,12 @@ export default function LoginPage() {
               value={password}
               onChangeText={setPassword}
             />
-            <TouchableOpacity onPress={handleAuth}>
+            <TouchableOpacity onPress={handleLogin}>
               <Text style={styles.switchText}>
-                {setLogin ? "Login" : "Sign Up"}
+                {login ? "Login" : "Sign Up"}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setLogin(!login)}>
+            <TouchableOpacity onPress={handleLogin}>
               <Text style={styles.switchText}>
                 {login
                   ? "Don't have an account? Sign Up"

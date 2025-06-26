@@ -1,15 +1,14 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const PlayerList = ({ players, onPressItem }) => {
   const renderItem = ({ item }) => {
     return (
-      <SafeAreaView style={{ backgroundColor: "black" }}>
+      <View style={{}}>
         <TouchableOpacity
           onPress={() => onPressItem(item.id)}
           style={{
-            margin: -30,
+            margin: 5,
           }}
         >
           <LinearGradient
@@ -25,7 +24,7 @@ const PlayerList = ({ players, onPressItem }) => {
             </Text>
           </LinearGradient>
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
     );
   };
   return (
