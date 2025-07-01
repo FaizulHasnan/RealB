@@ -17,7 +17,7 @@ export default async function Details() {
   const getData = async () => {
     try {
       const { data, error, status } = await supabase
-        .from("users")
+        .from("players")
         .select("*")
         .eq("id", itemId)
         .single();

@@ -1,14 +1,12 @@
-import { useAuthSession } from "@/app/providers/AuthProvider";
 import PlayerList from "@/components/PlayerList";
 import { supabase } from "@/lib/supabase";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const [players, setPlayers] = useState([]);
-  const {signOut} = useAuthSession()
 
   useEffect(() => {
     // Fetch data from Supabase when the component mounts
@@ -18,16 +16,15 @@ export default function HomeScreen() {
   const getData = async () => {
     try {
       const { data, error, status } = await supabase
-        .from("users")
+        .from("players")
         .select("*")
         .order("callname", { ascending: true });
-
+      console.log("data", data);
       if (error && status !== 406) {
         throw error;
       }
       if (data) {
         setPlayers(data);
-        console.log("getData", data);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -58,9 +55,6 @@ export default function HomeScreen() {
           })
         }
       />
-      <TouchableOpacity onPress={signOut} style={{ marginTop: 20, alignItems: 'center' }}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

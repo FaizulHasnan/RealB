@@ -1,9 +1,9 @@
-import { useAuthSession } from "@/app/providers/AuthProvider";
+import { supabase } from "@/lib/supabase";
 import { LinearGradient } from "expo-linear-gradient";
-import Uuid from "expo-modules-core/src/uuid";
 import { useState } from "react";
 import {
   Alert,
+  Button,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -11,34 +11,47 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
+import { useAuthSession } from "../providers/AuthProvider";
 
 export default function LoginPage() {
-  const [login, setLogin] = useState(true);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn } = useAuthSession();
+  const [loading, setLoading] = useState(false);
+  const { signIn, signOut } = useAuthSession();
 
-  const handleLogin = (): void => {
-    const random: string = Uuid.v4();
-    //get usersname, password
-    signIn(random);
-  };
+  async function handlesignIn() {
+    setLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+    if (error) Alert.alert(error.message);
+    signIn(data.session?.access_token);
+    setLoading(false);
+  }
 
-  const handleAuth = () => {
-    if (login) {
-      Alert.alert("Logging In", `${email}`, [
-        { text: "confirm", style: "cancel" },
-      ]);
-    } else {
-      Alert.alert("Signing Up", `${name},${email},${password}`, [
-        { text: "confirm", style: "destructive" },
-      ]);
-    }
-  };
+  async function handlesignUp() {
+    setLoading(true);
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
+    if (error) Alert.alert(error.message);
+    Alert.alert("Registration Successful", "Welcome To Real B", [
+      {
+        text: "Proceed To Login",
+        style: "destructive",
+      },
+    ]);
+    setEmail("");
+    setPassword("");
+    setLoading(false);
+  }
 
   return (
     <SafeAreaView>
@@ -57,12 +70,12 @@ export default function LoginPage() {
       >
         <Image
           style={{
-            height: 300,
-            width: 250,
+            height: 400,
+            width: 360,
             margin: "auto",
-            // marginTop: 150,
+            marginTop: 150,
+            marginBottom: 20,
           }}
-          // source={require("@/assets/images/RealB.png")}
           source={{
             uri: "https://triwxbibkxtrvyftqzrh.supabase.co/storage/v1/object/public/realbucket//RealB.png",
           }}
@@ -70,19 +83,28 @@ export default function LoginPage() {
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
         >
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontSize: 30,
+              fontWeight: "bold",
+            }}
+          >
+            No Drama , Just B
+          </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "yellow",
+              fontSize: 15,
+              fontWeight: "bold",
+              marginBottom: 30,
+            }}
+          >
+            BLOOD . BALL . BROTHERHOOD
+          </Text>
           <View style={styles.container}>
-            <Text style={styles.loginSignup}>
-              {login ? "WELCOME COMRADES" : "BE REAL NOW !!"}
-            </Text>
-            {!login && (
-              <TextInput
-                style={styles.inputText}
-                placeholder="Name"
-                placeholderTextColor="#f8f8ff"
-                value={name}
-                onChangeText={setName}
-              />
-            )}
             <TextInput
               style={styles.inputText}
               placeholder="Email"
@@ -100,18 +122,35 @@ export default function LoginPage() {
               value={password}
               onChangeText={setPassword}
             />
-            <TouchableOpacity onPress={handleLogin}>
-              <Text style={styles.switchText}>
-                {login ? "Login" : "Sign Up"}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleLogin}>
-              <Text style={styles.switchText}>
-                {login
-                  ? "Don't have an account? Sign Up"
-                  : "Already have an account? Login"}
-              </Text>
-            </TouchableOpacity>
+            <View style={{}}>
+              <View
+                style={{
+                  paddingTop: 10,
+                  paddingBottom: 4,
+                  alignSelf: "stretch",
+                }}
+              >
+                <Button
+                  title="LOGIN"
+                  color="#8b0000"
+                  disabled={loading}
+                  onPress={() => handlesignIn()}
+                />
+              </View>
+              <View
+                style={{
+                  paddingTop: 4,
+                  paddingBottom: 4,
+                  alignSelf: "stretch",
+                }}
+              >
+                <Button
+                  title="REGISTER"
+                  disabled={loading}
+                  onPress={() => handlesignUp()}
+                />
+              </View>
+            </View>
           </View>
         </KeyboardAvoidingView>
       </LinearGradient>
@@ -127,17 +166,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     shadowColor: "#000",
     shadowOpacity: 0.1,
-    // marginTop: 250,
   },
   loginSignup: {
     fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 15,
     color: "white",
-    // textShadowColor: "gold",
-    // textShadowOffset: { width: 1, height: 1 },
-    // textShadowRadius: 20,
     textAlign: "center",
-    marginBottom: 20,
+    margin: 10,
   },
   switchText: {
     textAlign: "center",
@@ -151,15 +186,8 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 10,
-    // paddingHorizontal: 160,a
-    // backgroundColor: "#fafafa",
+
     textAlign: "center",
     color: "white",
-  },
-  backgroundImage: {
-    flex: 1,
-    // resizeMode: "cover", // or 'contain', 'stretch', etc.
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
