@@ -16,15 +16,19 @@ const Pastmatch = ({ item }) => {
         end={{ x: 1, y: 0 }}
         style={{ borderRadius: 7 }}
       >
+        <Text style={styles.textMain}>{item.team}</Text>
         <View style={{}}>
-          <Text style={styles.textTime}>{item.status}</Text>
           <View>
-            <View>
-              <Text style={styles.textTime}>{item.date}</Text>
-            </View>
-            <View>
-              <Text style={styles.textMain}>{item.team}</Text>
-            </View>
+            <Text style={styles.textTime}>
+              {item.date}
+              {"   "}
+              {item.day}
+              {" - "}
+              {item.time}
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.textTime}>{item.venue}</Text>
           </View>
         </View>
       </LinearGradient>

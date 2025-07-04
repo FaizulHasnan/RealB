@@ -27,7 +27,6 @@ export default async function Details() {
       }
       if (data) {
         setPlayer(data);
-        console.log("Data", data);
       }
     } catch (error) {
       console.error("Error fetching data:", error);

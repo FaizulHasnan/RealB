@@ -19,7 +19,6 @@ export default function HomeScreen() {
         .from("players")
         .select("*")
         .order("callname", { ascending: true });
-      console.log("data", data);
       if (error && status !== 406) {
         throw error;
       }

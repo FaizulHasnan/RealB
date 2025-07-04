@@ -19,7 +19,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn, signOut } = useAuthSession();
+  const { signIn } = useAuthSession();
 
   async function handlesignIn() {
     setLoading(true);
@@ -48,6 +48,10 @@ export default function LoginPage() {
         style: "destructive",
       },
     ]);
+    const { error: error2 } = await supabase
+      .from("players")
+      .insert({ userId: user.id, email: email });
+    if (error2) Alert.alert(error2.message);
     setEmail("");
     setPassword("");
     setLoading(false);
