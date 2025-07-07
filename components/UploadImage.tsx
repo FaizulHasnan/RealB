@@ -34,8 +34,8 @@ export default function ImagePickerExample({ setImage, userId }) {
     const filePath = `${fileName}`;
 
     console.log("filePath", filePath);
-    // const abc = await supabase.storage.listBuckets();
-    // console.log("abc", abc);
+    const abc = await supabase.storage.listBuckets();
+    console.log("abc", abc);
 
     const { data, error } = await supabase.storage
       .from("realbucket")
@@ -49,20 +49,20 @@ export default function ImagePickerExample({ setImage, userId }) {
     } else {
       console.log("Uploaded:", data);
 
-      // Get public URL
-      // const { publicUrl } = await supabase.storage
-      //   .from("realbucket")
-      //   .getPublicUrl(filePath).data;
+      //Get public URL
+      const { publicUrl } = await supabase.storage
+        .from("realbucket")
+        .getPublicUrl(filePath).data;
 
-      // console.log("Public URL:", publicUrl);
+      console.log("Public URL:", publicUrl);
 
-      // const { error } = await supabase
-      //   .from("players")
-      //   .update({ imageUrl: publicUrl })
-      //   .eq("userId", userId);
-      // if (error) {
-      //   console.error("Upload error:", error);
-      // }
+      const { error } = await supabase
+        .from("players")
+        .update({ imageUrl: publicUrl })
+        .eq("userId", userId);
+      if (error) {
+        console.error("Upload error:", error);
+      }
     }
   }
 

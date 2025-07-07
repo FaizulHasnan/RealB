@@ -14,13 +14,6 @@ const PlayerList = ({ players, onPressItem }) => {
           start={{ x: 0, y: 1 }}
           end={{ x: 1, y: 0 }}
         >
-          {/* <View style={styles.container}>
-            <Image
-              key={item.id}
-              source={{ uri: item.imageUrl }}
-              style={styles.img}
-            />
-          </View> */}
           <Text style={{ fontSize: 20, color: "#ffffff", textAlign: "center" }}>
             <Text style={{ fontWeight: "bold" }}>{item.callname}</Text> - (
             {item.position})

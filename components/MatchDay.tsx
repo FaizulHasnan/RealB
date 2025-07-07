@@ -27,21 +27,17 @@ const MatchDay = ({ item }) => {
         <View>
           <Text style={styles.textTitle}>Match Day</Text>
           <Text style={styles.textMain}>{item.team}</Text>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-evenly" }}
-          >
-            <View>
-              <Text style={styles.textTime}>
-                {item.date}
-                {"   "}
-                {item.day}
-                {" - "}
-                {item.time}
-              </Text>
-            </View>
+          <View>
             <View>
               <Text style={styles.textTime}>{item.venue}</Text>
             </View>
+            <Text style={styles.textTime}>
+              {item.date}
+              {" / "}
+              {item.day}
+              {" - "}
+              {item.time}
+            </Text>
           </View>
         </View>
       </LinearGradient>
