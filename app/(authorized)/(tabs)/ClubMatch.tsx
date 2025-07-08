@@ -61,15 +61,14 @@ export default function ClubMatch() {
     return <MatchDay item={item} />;
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Text
         style={{
           fontSize: 30,
           fontWeight: "bold",
-          marginBottom: 10,
-          marginTop: 50,
+          marginBottom: 5,
           textAlign: "center",
-          color: "white",
+          color: "black",
         }}
       >
         Game Fixtures
@@ -85,10 +84,10 @@ export default function ClubMatch() {
         style={{
           paddingVertical: 5,
           fontSize: 20,
-          marginTop: 15,
+          marginTop: 1,
           fontWeight: "bold",
           textAlign: "center",
-          color: "red",
+          color: "black",
         }}
       >
         Past Match

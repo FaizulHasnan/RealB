@@ -1,13 +1,12 @@
 import PickerPlayer from "@/components/PickerPlayer";
-import { Fixtures } from "@/constants/Fixtures";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const GameList = () => {
-  const { itemID } = useLocalSearchParams();
+  const { oppoTeam } = useLocalSearchParams();
+  console.log("Team", oppoTeam);
 
-  const OppoTeam = Fixtures.find((i) => i.id === itemID);
   return (
     <ScrollView>
       <LinearGradient
@@ -27,7 +26,7 @@ const GameList = () => {
           >
             RealB Squad List
           </Text>
-          <Text style={styles.textTitle}>{OppoTeam?.team}</Text>
+          <Text style={styles.textTitle}>{oppoTeam}</Text>
         </View>
       </LinearGradient>
       <PickerPlayer position={"GK"} playerRequired={2} />

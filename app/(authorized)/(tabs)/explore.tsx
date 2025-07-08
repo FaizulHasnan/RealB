@@ -74,7 +74,7 @@ export default function TabTwoScreen() {
   const [image, setImage] = useState(null);
 
   return (
-    <ScrollView style={{ backgroundColor: "black" }}>
+    <ScrollView style={{}}>
       <View>
         <LinearGradient
           style={{ flex: 1, flexDirection: "row" }}
@@ -92,6 +92,7 @@ export default function TabTwoScreen() {
                 uri: image,
               }}
             />
+
             <UploadImage setImage={setImage} userId={userId} />
           </View>
           <View>
@@ -189,16 +190,17 @@ export default function TabTwoScreen() {
 }
 const styles = StyleSheet.create({
   textAbout: {
-    color: "white",
+    color: "black",
     fontSize: 20,
   },
   textTitle: {
-    color: "white",
+    color: "black",
     fontSize: 20,
     fontWeight: "bold",
+    marginLeft: 10,
   },
   textContact: {
-    color: "white",
+    color: "black",
     fontSize: 20,
     textAlign: "center",
   },
