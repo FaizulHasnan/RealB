@@ -25,6 +25,7 @@ const UploadImage = ({ setImage, userId }) => {
         setImage(result.assets[0].uri);
       }
     }
+  }
     // Upload image from local into global supabase storage & update url into database
 
     async function uploadToSupabase(uri) {
@@ -77,7 +78,6 @@ const UploadImage = ({ setImage, userId }) => {
         />
       </View>
     );
-  };
 };
 
 export default UploadImage;
