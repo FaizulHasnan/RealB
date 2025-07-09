@@ -92,7 +92,6 @@ export default function TabTwoScreen() {
                 uri: image,
               }}
             />
-
             <UploadImage setImage={setImage} userId={userId} />
           </View>
           <View>

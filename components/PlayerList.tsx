@@ -3,7 +3,6 @@ import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const PlayerList = ({ players, onPressItem }) => {
   const renderItem = ({ item }) => {
-    console.log(item.imageUrl);
     return (
       <TouchableOpacity
         onPress={() => onPressItem(item.id)}

@@ -50,7 +50,7 @@ export default function LoginPage() {
     ]);
     const { error: error2 } = await supabase
       .from("players")
-      .insert({ userId: user.id, email: email });
+      .upsert({ userId: user.id, email: email });
     if (error2) Alert.alert(error2.message);
     setEmail("");
     setPassword("");

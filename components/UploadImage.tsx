@@ -3,7 +3,7 @@ import * as ImagePicker from "expo-image-picker";
 import React from "react";
 import { Button, View } from "react-native";
 
-export default function ImagePickerExample({ setImage, userId }) {
+const UploadImage = ({ setImage, userId }) => {
   // Pick & upload image
 
   const pickImage = async () => {
@@ -29,19 +29,21 @@ export default function ImagePickerExample({ setImage, userId }) {
 
     async function uploadToSupabase(uri) {
       const response = await fetch(uri);
-      const blob = await response.blob();
+      // const blob = await response.blob();
       const fileExt = uri.split(".").pop();
       const fileName = `image-${Date.now()}.${fileExt}`;
       const filePath = `${fileName}`;
+      console.log(response);
 
       // const abc = await supabase.storage.listBuckets();
       // console.log("abc", abc);
 
+      const imageFile = result.assets[0].uri;
       const { data, error } = await supabase.storage
         .from("realbucket")
-        .upload("/faizul123.png", blob, {
+        .upload(`${filePath}`, imageFile, {
           contentType: "image/png",
-          upsert: false,
+          upsert: true,
         });
 
       if (error) {
@@ -67,13 +69,15 @@ export default function ImagePickerExample({ setImage, userId }) {
     }
 
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{}}>
         <Button
-          color="#708090"
+          color="white"
           title="Upload Profile Photo"
           onPress={pickImage}
         />
       </View>
     );
   };
-}
+};
+
+export default UploadImage;
